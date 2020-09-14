@@ -11,7 +11,7 @@ class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
         stack    = []
         last_val = float("-inf")
-        while len(stack) > 0 and root:
+        while len(stack) > 0 or root:
             while root:
                 stack.append(root)
                 root = root.left
