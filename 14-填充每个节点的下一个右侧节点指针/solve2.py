@@ -7,6 +7,7 @@ class Node:
         self.right = right
         self.next = next
 """
+# https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/
 
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
