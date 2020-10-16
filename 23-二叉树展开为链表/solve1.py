@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/
 class Solution:
     def flatten(self, root: TreeNode) -> None:
         """
