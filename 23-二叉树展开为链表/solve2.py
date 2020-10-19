@@ -10,10 +10,22 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        def helper(root):
-            left  = None
-            right = None
-            if root.left:
-                left = helper(root.right)
+        # 差点前序写不出来
+        if not root:
+            return
+        stack = [ root ]
+        pre   = None
+        while len(stack) > 0:
+            root = stack.pop()
+            # print(root.val)
             if root.right:
-                right = helper(root.right)
+                stack.append(root.right)
+            if root.left:
+                stack.append(root.left)
+            if not pre:
+                pre = root
+            else:
+                pre.right = root
+                pre.left  = None
+                pre       = root
+            root      = root.left
