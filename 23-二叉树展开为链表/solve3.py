@@ -13,25 +13,19 @@ class Solution:
         # 差点前序写不出来
         if not root:
             return
-        # 莫里斯遍历
-        # 核心其实是对于当前节点，找到它的前驱节点
-        while root:
-            # print(root.val)
-            # 叶子或者无左子树的节点
-            if not root.left:
-                # print(root.val)
-                print(root.val)
-                root = root.right # 因为 right 会指向右子树或者前驱
-            else:
-                tmp = root.left
+        #! 类莫里斯遍历
+        # 遍历至叶子节点，记录返回其子树的上一层父节点
+        #! 但是整道题是需要根据前序来改造, 找到前序遍历下，当前节点的前驱
+        curr = root
+        while curr:
+            if curr.left:
+                pre = tmp = curr.left
                 # 有可能是已经指向前驱
-                while tmp.right and tmp.right != root:
+                while tmp.right:
                     tmp = tmp.right
-                # 需要指向前驱 左子树最右节点
-                if not tmp.right:
-                    print(root.val)
-                    tmp.right = root
-                    root      = root.left
-                else:
-                    tmp.right = None
-                    root      = root.right
+                # tmp 是 root.right 的前驱节点
+                tmp.right  = curr.right
+                curr.right = curr.left
+                curr.left  = None
+            curr = curr.right
+
