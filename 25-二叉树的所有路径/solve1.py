@@ -6,36 +6,23 @@
 #         self.right = None
 # https://leetcode-cn.com/problems/binary-tree-paths/
 class Solution:
-    def path():
-        pass
-
     def binaryTreePaths(self, root: TreeNode) -> List[str]:            
 
-
-        paths = [ str(root.val) + '->' ]
-        def helper(root):
+        # 自顶向下，类先序
+        # 为了 2->1 ... 这样的形式，其实也该想到先序
+        def helper(root, path):
             if not root:
                 return
-            n = len(paths)
-            for i in range(n):
-                paths[i] += str(root.val) + "->"
-            helper(root.left)
-            helper(root.right)
+            path += str(root.val)
+            # 为叶子节点，那就结束了，加入答案中
+            if not root.left and not root.right:
+                paths.append(path)
+            else:
+                path += '->'
+                helper(root.left, path)
+                helper(root.right, path)
 
-        helper(root)
-        print(paths)
-            # if not root.left and not root.right:
-            #     return [ "->" + str(root.val) ]
-            # left_path   = None
-            # right_path  = None 
-            # if root.left:
-            #     left_path  = helper(root.left)
-            # if root.right:
-            #     right_path = helper(root.right)
-
-            # if left_path:            
-            #     for path in left_path:
-            #         pass
-
-            # if lefts:
-            #     return
+        paths = []
+        helper(root, '')
+        # print(paths)
+        return paths
