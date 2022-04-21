@@ -7,6 +7,7 @@ public:
         //! 这两个还是要注意
         flowerbed.push_back(0);
         flowerbed.insert(flowerbed.begin(), 0);
+        //! 关键在于跳格子
         for(int i = 1; i <= s && n > 0;)
         {
             // 如果不能种，相邻也不能 直接跳
