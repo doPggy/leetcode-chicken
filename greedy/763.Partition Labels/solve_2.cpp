@@ -1,10 +1,10 @@
 class Solution {
 public:
     vector<int> partitionLabels(string s) {
-        int s = s.size();
+        int len = s.size();
         int last[26];
         // 预处理 记录最后一次出现，尽量包括短的范围
-        for(int i = 0; i < s; i++)
+        for(int i = 0; i < len; i++)
         {
             last[s[i] - 'a'] = i;
         }
@@ -12,7 +12,7 @@ public:
         vector<int> part;
         int start = 0;
         int end = 0;
-        for(int i = 0; i < s; i++)
+        for(int i = 0; i < len; i++)
         {
             end = max(end, last[s[i] - 'a']);
             if(i == end)
